@@ -1,9 +1,7 @@
-package com.example.metro_tailor;
+package com.example.EnterPriseHelper;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;

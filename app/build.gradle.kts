@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.metro_tailor"
+    namespace = "com.example.EnterPriseHelper"
     compileSdk = 34
 
     defaultConfig {

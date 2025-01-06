@@ -1,6 +1,5 @@
-package com.example.metro_tailor;
+package com.example.EnterPriseHelper;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class MainActivity2 extends AppCompatActivity {
 
