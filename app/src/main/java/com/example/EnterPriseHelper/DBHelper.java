@@ -100,9 +100,10 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         try {
             wr.delete(TABLE_NAME, "id=?", new String[]{id});
+            Log.d("success", "delData: success"+id);
         }catch(Exception e)
         {
-            Log.i("dbhelper", "delData: " + e);
+            Log.d("dbhelper", "delData: " + e);
         }
     }
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +21,7 @@ public class AdapterClass extends RecyclerView.Adapter<CardView> {
     public AdapterClass(Context context, ArrayList<Model> list) {
         this.context = context;
         model = list;
-
+        sd = SingleTonData.getInstance(context);
     }
 
     @NonNull
@@ -33,15 +34,28 @@ public class AdapterClass extends RecyclerView.Adapter<CardView> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CardView holder, int position) {
-        holder.company.setText(model.get(position).Company);
-        holder.product.setText(model.get(position).Product);
-        holder.quantity.setText(String.valueOf(model.get(position).Quantity + " M"));
-        holder.rate.setText(String.valueOf(Float.parseFloat(model.get(position).Rate)));
-        holder.total.setText(model.get(position).Total);
-        holder.Del.setOnClickListener(view->{
-            Log.d("DELDATa", "onBindViewHolder: " + model.get(position).id);
-            sd.delData(model.get(position).id);
-            notifyItemRemoved(position);
+
+            holder.company.setText(model.get(position).Company);
+            holder.product.setText(model.get(position).Product);
+            holder.quantity.setText(String.valueOf(model.get(position).Quantity + " M"));
+            holder.rate.setText(String.valueOf(Float.parseFloat(model.get(position).Rate)));
+            holder.total.setText(model.get(position).Total);
+        holder.Del.setOnClickListener(view -> {
+            try {
+                String idToDelete = model.get(position).id;
+
+                sd.delData(idToDelete);
+
+                model.remove(position);
+
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, model.size());
+
+                Toast.makeText(context, "Removed", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.d("error3", "onBindViewHolder: " + e);
+                Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
 
     }
